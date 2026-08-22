@@ -8,7 +8,7 @@
 export type TriageLevel = 'GREEN' | 'YELLOW' | 'RED'
 export type ReferralUrgency = 'routine' | 'soon' | 'urgent'
 export type Severity = 'mild' | 'moderate' | 'severe'
-export type LanguageCode = 'en' | 'hi' | 'mr'
+export type LanguageCode = 'en' | 'hi' | 'mr' | 'hinglish'
 
 export type SymptomCategory =
   | 'general'
@@ -35,7 +35,7 @@ export const SYMPTOM_CATALOG: SymptomDefinition[] = [
   { key: 'dizziness', category: 'general', aliases: ['dizziness', 'dizzy', 'giddiness', 'चक्कर', 'भ्रम', 'गरगरणे'] },
   { key: 'headache', category: 'general', aliases: ['headache', 'सिरदर्द', 'सर दर्द', 'डोकेदुखी'] },
   { key: 'fatigue', category: 'general', aliases: ['fatigue', 'tiredness', 'tired', 'थकान', 'थकवा'] },
-  { key: 'body_pain', category: 'general', aliases: ['body pain', 'body ache', 'बदन दर्द', 'शरीर दर्द', 'अंगदुखी', 'सर्वांग दुखणे'] },
+  { key: 'body_pain', category: 'general', aliases: ['body pain', 'body ache', 'बदन दर्द', 'शरीर दर्द', 'अंगदुखी', 'सर्वांग दुखण€€€'] },
 
   // ------------------------------------------------------------ respiratory
   { key: 'cough', category: 'respiratory', aliases: ['cough', 'खांसी', 'खोकला'] },
@@ -49,7 +49,7 @@ export const SYMPTOM_CATALOG: SymptomDefinition[] = [
       'श्वास घेण्यास त्रास', 'श्वास घ्यायला त्रास', 'दम लागणे',
     ],
   },
-  { key: 'fast_breathing', category: 'respiratory', danger: true, aliases: ['fast breathing', 'rapid breathing', 'tachypnoea', 'तेज सांस', 'जल्दी सांस', 'जलद श्वास'] },
+  { key: 'fast_breathing', category: 'respiratory', danger: true, aliases: ['fast breathing', 'rapid breathing', 'tachypnoea', 'तेज सांस', 'जल्दी सांस', 'जलद €€€'] },
   { key: 'chest_pain', category: 'respiratory', aliases: ['chest pain', 'सीने में दर्द', 'छाती में दर्द', 'छातीत दुखणे'] },
 
   // ------------------------------------------------------- gastrointestinal
@@ -58,18 +58,18 @@ export const SYMPTOM_CATALOG: SymptomDefinition[] = [
   { key: 'abdominal_pain', category: 'gastrointestinal', aliases: ['abdominal pain', 'stomach pain', 'पेट दर्द', 'पेट में दर्द', 'पोटदुखी'] },
 
   // ----------------------------------------------------------------maternal
-  { key: 'vaginal_bleeding', category: 'maternal', danger: true, aliases: ['vaginal bleeding', 'bleeding', 'per vaginal bleeding', 'योनि से रक्तस्राव', 'खून आना', 'रक्तस्राव', 'रक्तस्त्राव'] },
-  { key: 'severe_abdominal_pain', category: 'maternal', danger: true, aliases: ['severe abdominal pain', 'तेज पेट दर्द', 'भयंकर पेट दर्द', 'तीव्र पोटदुखी'] },
-  { key: 'severe_headache', category: 'maternal', danger: true, aliases: ['severe headache', 'तेज सिरदर्द', 'भयंकर सिरदर्द', 'तीव्र डोकेदुखी'] },
-  { key: 'blurred_vision', category: 'maternal', danger: true, aliases: ['blurred vision', 'blurry vision', 'धुंधला दिखना', 'धुंधली नजर', 'अंधुक दिसणे'] },
+  { key: 'vaginal_bleeding', category: 'maternal', danger: true, aliases: ['vaginal bleeding', 'bleeding', 'per vaginal bleeding', 'योनि से रक्तस्राव', 'खून आ€€€'] },
+  { key: 'severe_abdominal_pain', category: 'maternal', danger: true, aliases: ['severe abdominal pain', 'तेज पेट दर्द', 'भयंकर पेट दर्द', 'तीव्€€€'] },
+  { key: 'severe_headache', category: 'maternal', danger: true, aliases: ['severe headache', 'तेज सिरदर्द', 'भयंकर सिरदर्द', 'तीव्र डोक€€€'] },
+  { key: 'blurred_vision', category: 'maternal', danger: true, aliases: ['blurred vision', 'blurry vision', 'धुंधला दिखना', 'धुंधली नजर', 'अंधुक €€€'] },
   { key: 'swelling', category: 'maternal', aliases: ['swelling', 'oedema', 'edema', 'सूजन', 'सूज'] },
-  { key: 'reduced_fetal_movement', category: 'maternal', danger: true, aliases: ['reduced fetal movement', 'no fetal movement', 'बच्चे की हलचल कम', 'गर्भ में हलचल कम', 'बाळाची हालचाल कमी'] },
-  { key: 'convulsions', category: 'maternal', danger: true, aliases: ['convulsions', 'convulsion', 'seizure', 'fits', 'दौरे', 'मिर्गी', 'झटके', 'फिट', 'झटका', 'आकडी'] },
+  { key: 'reduced_fetal_movement', category: 'maternal', danger: true, aliases: ['reduced fetal movement', 'no fetal movement', 'बच्चे की हलचल कम', 'गर्भ मे€€€'] },
+  { key: 'convulsions', category: 'maternal', danger: true, aliases: ['convulsions', 'convulsion', 'seizure', 'fits', 'दौरे', 'मिर्गी', 'झटके', 'फिट', 'झटक€€€'] },
 
   // ------------------------------------------------------------------ child
-  { key: 'unable_to_drink', category: 'child', danger: true, aliases: ['unable to drink', 'not feeding', 'refuses to feed', 'not able to drink', 'दूध नहीं पी रहा', 'पानी नहीं पी रहा', 'पिऊ शकत नाही'] },
+  { key: 'unable_to_drink', category: 'child', danger: true, aliases: ['unable to drink', 'not feeding', 'refuses to feed', 'not able to drink', 'दूध नहीं पी रहा', 'पा€€€'] },
   { key: 'lethargy', category: 'child', danger: true, aliases: ['lethargy', 'lethargic', 'drowsy', 'सुस्ती', 'सुस्त', 'निस्तेज', 'सुस्तपणा'] },
-  { key: 'unconsciousness', category: 'child', danger: true, aliases: ['unconsciousness', 'unconscious', 'not responding', 'बेहोशी', 'बेहोश', 'बेशुद्ध', 'शुद्ध हरपणे'] },
+  { key: 'unconsciousness', category: 'child', danger: true, aliases: ['unconsciousness', 'unconscious', 'not responding', 'बेहोशी', 'बेहोश', 'बेशुद्ध', 'शु€€€'] },
   { key: 'sunken_eyes', category: 'child', aliases: ['sunken eyes', 'धँसी आँखें', 'खोल गेलेले डोळे'] },
   { key: 'chest_indrawing', category: 'child', danger: true, aliases: ['chest indrawing', 'chest retraction', 'छाती धंसना', 'छाती आत ओढणे'] },
 ]

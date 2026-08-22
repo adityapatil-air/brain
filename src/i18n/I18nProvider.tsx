@@ -27,7 +27,7 @@ const I18nContext = createContext<I18nValue | null>(null)
 function readInitial(): LanguageCode {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored === 'en' || stored === 'hi' || stored === 'mr') return stored
+    if (stored === 'en' || stored === 'hi' || stored === 'mr' || stored === 'hinglish') return stored as LanguageCode
   } catch {
     /* localStorage may be unavailable in private mode */
   }

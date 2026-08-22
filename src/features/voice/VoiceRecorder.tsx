@@ -12,6 +12,7 @@ type Phase = 'idle' | 'recording' | 'transcribing' | 'review' | 'error'
 
 const LANGUAGE_OPTIONS: Array<{ code: LanguageCode; label: string; sub: string }> = [
   { code: 'hi', label: 'हिन्दी', sub: 'Hindi' },
+  { code: 'hinglish', label: 'Hinglish', sub: 'Hindi + English' },
   { code: 'mr', label: 'मराठी', sub: 'Marathi' },
   { code: 'en', label: 'English', sub: 'English' },
 ]

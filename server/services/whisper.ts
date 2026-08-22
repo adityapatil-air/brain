@@ -17,8 +17,18 @@ export interface TranscriptionResult {
  */
 const SIMULATED: Record<LanguageCode, string> = {
   hi: 'मुझे बहुत तेज बुखार है और सांस लेने में तकलीफ हो रही है। कल से कमजोरी भी बहुत है।',
-  mr: 'मला कालपासून खूप ताप आहे आणि श्वास घेण्यास त्रास होत आहे. खूप अशक्तपणा जाणवतो आहे.',
+  mr: 'मला कालपासून खूप ताप आहे आणि श्वास घेण्यास त्रास होत आहे. खूप अशक्तपणा ज€€€',
   en: 'The patient has had a high fever since yesterday and is having difficulty breathing, with marked weakness.',
+  hinglish: 'Mujhe bahut tez bukhar hai aur saas lene mein takleef ho rahi hai. Weakness bhi hai bahut.',
+}
+
+/**
+ * Map Hinglish to the closest Whisper language code.
+ * Whisper doesn't have explicit Hinglish, so we use Hindi.
+ */
+function mapLanguageForWhisper(lang: LanguageCode): string {
+  if (lang === 'hinglish') return 'hi'
+  return lang
 }
 
 export async function transcribe(
@@ -50,11 +60,11 @@ export async function transcribe(
   const form = new FormData()
   form.append('file', new Blob([new Uint8Array(audio)], { type: mimeType }), `recording.${ext}`)
   form.append('model', env.whisper.model)
-  form.append('language', language)
+  form.append('language', mapLanguageForWhisper(language))
   form.append('response_format', 'json')
   form.append(
     'prompt',
-    'Clinical symptom description spoken by a community health worker in India. Transcribe verbatim in the spoken language.',
+    'Clinical symptom description spoken by a community health worker in India. Transcribe verbatim in the spoken language. Accept mixed Hindi-English (Hinglish) as spoken.',
   )
 
   const res = await fetch(`${env.whisper.baseUrl}/audio/transcriptions`, {

@@ -1,6 +1,6 @@
 import type { LanguageCode } from '../../shared/clinical'
 
-const LOCALE: Record<LanguageCode, string> = { en: 'en-IN', hi: 'hi-IN', mr: 'mr-IN' }
+const LOCALE: Record<LanguageCode, string> = { en: 'en-IN', hi: 'hi-IN', mr: 'mr-IN', hinglish: 'en-IN' }
 
 export function formatDate(iso: string | Date, lang: LanguageCode = 'en'): string {
   const d = typeof iso === 'string' ? new Date(iso) : iso
@@ -43,9 +43,9 @@ export function relativeTime(iso: string, lang: LanguageCode = 'en'): string {
 export function formatAge(age: number, lang: LanguageCode = 'en'): string {
   if (age < 1) {
     const months = Math.max(1, Math.round(age * 12))
-    return lang === 'en' ? `${months} mo` : lang === 'hi' ? `${months} माह` : `${months} महिने`
+    return lang === 'en' || lang === 'hinglish' ? `${months} mo` : lang === 'hi' ? `${months} माह` : `${months} महिने`
   }
-  return lang === 'en' ? `${Math.round(age)} yr` : lang === 'hi' ? `${Math.round(age)} वर्ष` : `${Math.round(age)} वर्षे`
+  return lang === 'en' || lang === 'hinglish' ? `${Math.round(age)} yr` : lang === 'hi' ? `${Math.round(age)} वर्ष` : `${Math.round(age)} वर्षे`
 }
 
 export function formatDistance(km: number | null | undefined): string {
@@ -61,11 +61,4 @@ export function initials(name: string): string {
     .slice(0, 2)
     .map((w) => w[0]?.toUpperCase() ?? '')
     .join('')
-}
-
-export function titleCase(s: string): string {
-  return s
-    .replace(/[_-]+/g, ' ')
-    .replace(/\b\w/g, (c) => c.toUpperCase())
-    .trim()
 }
