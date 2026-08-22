@@ -1,13 +1,5 @@
 import 'dotenv/config'
 
-// Add this after the dotenv import:
-if (process.env.NODE_ENV !== 'production') {
-  await import('dotenv/config')
-  const result = await import('dotenv').then(m => m.config({ path: '.env.local' }))
-  if (result?.error) console.warn('.env.local not found')
-}
-import 'dotenv/config'
-
 const read = (key: string): string | null => {
   const v = process.env[key]
   return v && v.trim().length > 0 ? v.trim() : null
@@ -29,6 +21,7 @@ export const env = {
   whisper: {
     // Any OpenAI-compatible /audio/transcriptions endpoint works here:
     // OpenAI itself, or Groq (which serves the real whisper-large-v3 free).
+    // Load from OPENAI_API_KEY env var set via dotenv-cli from .env.local
     apiKey: read('OPENAI_API_KEY'),
     model: read('WHISPER_MODEL') ?? 'whisper-1',
     baseUrl: (read('WHISPER_BASE_URL') ?? 'https://api.openai.com/v1').replace(/\/+$/, ''),

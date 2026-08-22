@@ -6,12 +6,12 @@
   "scripts": {
     "dev": "concurrently -n server,web -c cyan,magenta \"npm:dev:server\" \"npm:dev:web\"",
     "dev:web": "vite",
-    "dev:server": "tsx watch server/index.ts",
+    "dev:server": "dotenv -e .env.local -- tsx watch server/index.ts",
     "build": "tsc -b && vite build",
     "typecheck": "tsc -b --noEmit false --emitDeclarationOnly false --pretty",
     "preview": "vite preview",
     "start": "concurrently -n server,web -c cyan,magenta \"npm:dev:server\" \"npm:preview\"",
-    "seed": "tsx scripts/seed.ts"
+    "seed": "dotenv -e .env.local -- tsx scripts/seed.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.45.4",
@@ -37,6 +37,7 @@
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
     "concurrently": "^9.0.1",
+    "dotenv-cli": "^7.0.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
     "tsx": "^4.19.1",
