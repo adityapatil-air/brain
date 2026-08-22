@@ -1,5 +1,13 @@
 import 'dotenv/config'
 
+// Add this after the dotenv import:
+if (process.env.NODE_ENV !== 'production') {
+  await import('dotenv/config')
+  const result = await import('dotenv').then(m => m.config({ path: '.env.local' }))
+  if (result?.error) console.warn('.env.local not found')
+}
+import 'dotenv/config'
+
 const read = (key: string): string | null => {
   const v = process.env[key]
   return v && v.trim().length > 0 ? v.trim() : null
