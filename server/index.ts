@@ -52,6 +52,14 @@ const patientSchema = z.object({
 
 // ---------------------------------------------------------------------------
 
+app.get('/', (_req, res) => {
+  res.json({
+    ok: true,
+    message: 'ASHA Care API is running',
+    health: '/api/health',
+  })
+})
+
 app.get('/api/health', (_req, res) => {
   res.json({ ok: true, capabilities: capabilities() })
 })
